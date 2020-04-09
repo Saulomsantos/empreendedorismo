@@ -51,7 +51,7 @@ namespace empreendedorismo.webapi.Controllers
         /// <param name="filtro">Objeto com os filtros passados</param>
         /// <returns>Uma lista de empresas e um status code 200 - Ok</returns>
         /// <response code="200">Retorna a lista de empresas de um determinado município e CNAE</response>
-        [HttpGet("Municipio")]
+        [HttpPost("Municipio")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetByCnaeCity(FiltroViewModel filtro)
         {
@@ -100,7 +100,7 @@ namespace empreendedorismo.webapi.Controllers
         /// <param name="filtro">Objeto com os filtros passados</param>
         /// <returns>Uma lista de empresas e um status code 200 - Ok</returns>
         /// <response code="200">Retorna a lista de empresas de um determinado bairro e CNAE</response>
-        [HttpGet("Bairro")]
+        [HttpPost("Bairro")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetByCnaeDistrict(FiltroViewModel filtro)
         {
