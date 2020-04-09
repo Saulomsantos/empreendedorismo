@@ -50,23 +50,39 @@ namespace empreendedorismo.webapi.Controllers
         /// </remarks>
         /// <param name="filtro">Objeto com os filtros passados</param>
         /// <returns>Uma lista de empresas e um status code 200 - Ok</returns>
-        /// <response code="200">Retorna a lista de empresas</response>
+        /// <response code="200">Retorna a lista de empresas de um determinado município e CNAE</response>
         [HttpGet("Municipio")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetByCnaeCity(FiltroViewModel filtro)
         {
-            List<CnpjDadosCadastraisPj> listaEmpresas = new List<CnpjDadosCadastraisPj>();
-
-            listaEmpresas = _empresasRepository.ListarByCnaeCity(filtro);
-
-            // Retora a resposta da requisição 200 - OK
-            // trazendo a quantidade de empresas
-            // e a lista de empresas
-            return Ok(new
+            if (filtro.CnaeFiscal > 0)
             {
-                qtdEmpresas = listaEmpresas.Count(),
-                listaEmpresas
-            });
+                // Cria uma lista para armazenar as empresas buscadas
+                List<CnpjDadosCadastraisPj> listaEmpresas = new List<CnpjDadosCadastraisPj>();
+
+                // Busca todas as empresas que atendam ao filtro e armazena na lista
+                listaEmpresas = _empresasRepository.ListarByCnaeCity(filtro);
+
+                // Retora a resposta da requisição 200 - OK
+                // trazendo a quantidade de empresas
+                // e a lista de empresas
+                return Ok(new
+                {
+                    qtdEmpresas = listaEmpresas.Count(),
+                    listaEmpresas
+                });
+            }
+
+            // Caso o município não seja informado, retorna a resposta da requisição 400 - BadRequest
+            // e uma mensagem personalizada
+            if (filtro.Municipio == null)
+            {
+                return BadRequest("Informe o Município para pesquisa sem acentuação. Ex: sao paulo");
+            }
+
+            // Caso um código CNAE não seja informado, retorna a reposta da requisição 400 - BadRequest
+            // e uma mensagem personalizada
+            return BadRequest("Informe o CNAE para pesquisa. Ex: 4711302 ou 471");
         }
 
         /// <summary>
@@ -83,23 +99,39 @@ namespace empreendedorismo.webapi.Controllers
         /// </remarks>
         /// <param name="filtro">Objeto com os filtros passados</param>
         /// <returns>Uma lista de empresas e um status code 200 - Ok</returns>
-        /// <response code="200">Retorna a lista de empresas</response>
+        /// <response code="200">Retorna a lista de empresas de um determinado bairro e CNAE</response>
         [HttpGet("Bairro")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetByCnaeDistrict(FiltroViewModel filtro)
         {
-            List<CnpjDadosCadastraisPj> listaEmpresas = new List<CnpjDadosCadastraisPj>();
-
-            listaEmpresas = _empresasRepository.ListarByCnaeDistrict(filtro);
-
-            // Retora a resposta da requisição 200 - OK
-            // trazendo a quantidade de empresas
-            // e a lista de empresas
-            return Ok(new
+            if (filtro.CnaeFiscal > 0)
             {
-                qtdEmpresas = listaEmpresas.Count(),
-                listaEmpresas
-            });
+                // Cria uma lista para armazenar as empresas buscadas
+                List<CnpjDadosCadastraisPj> listaEmpresas = new List<CnpjDadosCadastraisPj>();
+
+                // Busca todas as empresas que atendam ao filtro e armazena na lista
+                listaEmpresas = _empresasRepository.ListarByCnaeDistrict(filtro);
+
+                // Retora a resposta da requisição 200 - OK
+                // trazendo a quantidade de empresas
+                // e a lista de empresas
+                return Ok(new
+                {
+                    qtdEmpresas = listaEmpresas.Count(),
+                    listaEmpresas
+                });
+            }
+
+            // Caso o bairro não seja informado, retorna a resposta da requisição 400 - BadRequest
+            // e uma mensagem personalizada
+            if (filtro.Bairro == null)
+            {
+                return BadRequest("Informe o Bairro para pesquisa sem acentuação. Ex: sao mateus");
+            }
+
+            // Caso um código CNAE não seja informado, retorna a reposta da requisição 400 - BadRequest
+            // e uma mensagem personalizada
+            return BadRequest("Informe o CNAE para pesquisa. Ex: 4711302 ou 471");
         }
     }
 }
