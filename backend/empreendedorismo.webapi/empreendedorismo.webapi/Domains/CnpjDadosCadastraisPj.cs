@@ -1,4 +1,6 @@
-﻿namespace empreendedorismo.webapi.Domains
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace empreendedorismo.webapi.Domains
 {
     /// <summary>
     /// Classe responsável pela entidade CNPJ Dados Cadastrais
@@ -8,7 +10,10 @@
         public long Cnpj { get; set; }
         public string RazaoSocial { get; set; }
         public string NomeFantasia { get; set; }
-        public int? CnaeFiscal { get; set; }
+
+        [Required(ErrorMessage = "Informe o CNAE. Ex: 4711302")]
+        public int CnaeFiscal { get; set; }
+
         public int? SituacaoCadastral { get; set; }
         public string Bairro { get; set; }
         public string Uf { get; set; }
