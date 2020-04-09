@@ -31,6 +31,16 @@ namespace empreendedorismo.webapi
                 // Define a versão compatível do .NET Core
                 .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
 
+            //  Adiciona o Cors ao projeto
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+            });
+
             // Documentação Swagger
 
             // https://docs.microsoft.com/pt-br/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-2.1&tabs=visual-studio
@@ -65,6 +75,9 @@ namespace empreendedorismo.webapi
                 c.RoutePrefix = string.Empty;
             });
 
+            // Habilita o Cors
+            app.UseCors("CorsPolicy");
+ 
             // Define o uso do MVC
             app.UseMvc();
         }
