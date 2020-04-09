@@ -37,7 +37,7 @@ namespace empreendedorismo.webapi.Repositories
                         NmCnae = e.CnaeFiscalNavigation.NmCnae
                     }
                 })
-                .Where(e => e.CnaeFiscal == filtro.CnaeFiscal && e.Municipio == filtro.Municipio)
+                .Where(e => e.CnaeFiscal.ToString().StartsWith(filtro.CnaeFiscal.ToString()) && e.Municipio.StartsWith(filtro.Municipio))
                 .ToList();
 
             //foreach (var item in listaEmpresas)
@@ -68,7 +68,7 @@ namespace empreendedorismo.webapi.Repositories
                         NmCnae = e.CnaeFiscalNavigation.NmCnae
                     }
                 })
-                .Where(e => e.CnaeFiscal == filtro.CnaeFiscal && e.Bairro == filtro.Bairro)
+                .Where(e => e.CnaeFiscal.ToString().StartsWith(filtro.CnaeFiscal.ToString()) && e.Bairro.StartsWith(filtro.Bairro))
                 .ToList();
         }
     }
