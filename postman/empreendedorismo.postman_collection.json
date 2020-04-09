@@ -18,7 +18,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"cnaeFiscal\" : 4711302,\n\t\"municipio\" : \"Sao Paulo\"\n}",
+							"raw": "{\n\t\"cnaeFiscal\" : 4711302,\n\t\"municipio\" : \"sao paulo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -51,7 +51,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"cnaeFiscal\" : 4711302,\n\t\"bairro\" : \"Sao Mateus\"\n}",
+							"raw": "{\n\t\"cnaeFiscal\" : 4711302,\n\t\"bairro\" : \"santa cecilia\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
