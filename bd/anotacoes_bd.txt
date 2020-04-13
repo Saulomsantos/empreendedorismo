@@ -1,0 +1,35 @@
+- Reestruturar o bd com os campos de acordo com a planilha disponibilizada
+
+- Popular o bd com os dados das empresas do município de SP
+
+- Refatorar a API para trazer estes dados atualizados
+
+- Refatorar o Front-End para exibir os dados da API com três filtros:
+
+	- Município
+	- Bairro
+	- CNAE
+
+
+Total registros (BR):				43101755
+Registros filtrados por UF (SP):	 	 3826430
+Registros filtrador por UF (SP) e CNAE (A):	    6477
+Registros filtrador por UF (SP) e CNAE (B):	     844
+Registros filtrador por UF (SP) e CNAE (C):	  274138
+Registros filtrador por UF (SP) e CNAE (D):	    1021
+Registros filtrador por UF (SP) e CNAE (E):	    4834
+Registros filtrador por UF (SP) e CNAE (F):	  177335
+Registros filtrador por UF (SP) e CNAE (G):	 1196870
+Registros filtrador por UF (SP) e CNAE (H):	        
+Registros filtrador por UF (SP) e CNAE (I):	        
+Registros filtrador por UF (SP) e CNAE (J):	        
+Registros filtrador por UF (SP) e CNAE (K):	        
+Registros filtrador por UF (SP) e CNAE (L):	        
+Registros filtrador por UF (SP) e CNAE (M):	        
+Registros filtrador por UF (SP) e CNAE (N):	        
+Registros filtrador por UF (SP) e CNAE (O):	        
+Registros filtrador por UF (SP) e CNAE (P):	        
+Registros filtrador por UF (SP) e CNAE (Q):	        
+Registros filtrador por UF (SP) e CNAE (R):	        
+Registros filtrador por UF (SP) e CNAE (S):	        
+Registros filtrador por UF (SP) e CNAE (T):	        
