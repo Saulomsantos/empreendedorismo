@@ -12,24 +12,35 @@
 
 
 Total registros (BR):				43101755
-Registros filtrados por UF (SP):	 	 3826430
-Registros filtrador por UF (SP) e CNAE (A):	    6477
-Registros filtrador por UF (SP) e CNAE (B):	     844
-Registros filtrador por UF (SP) e CNAE (C):	  274138
-Registros filtrador por UF (SP) e CNAE (D):	    1021
-Registros filtrador por UF (SP) e CNAE (E):	    4834
-Registros filtrador por UF (SP) e CNAE (F):	  177335
-Registros filtrador por UF (SP) e CNAE (G):	 1196870
-Registros filtrador por UF (SP) e CNAE (H):	        
-Registros filtrador por UF (SP) e CNAE (I):	        
-Registros filtrador por UF (SP) e CNAE (J):	        
-Registros filtrador por UF (SP) e CNAE (K):	        
-Registros filtrador por UF (SP) e CNAE (L):	        
-Registros filtrador por UF (SP) e CNAE (M):	        
-Registros filtrador por UF (SP) e CNAE (N):	        
-Registros filtrador por UF (SP) e CNAE (O):	        
-Registros filtrador por UF (SP) e CNAE (P):	        
-Registros filtrador por UF (SP) e CNAE (Q):	        
-Registros filtrador por UF (SP) e CNAE (R):	        
-Registros filtrador por UF (SP) e CNAE (S):	        
-Registros filtrador por UF (SP) e CNAE (T):	        
+
+Registros por UF (SP):		 	 	 3826430
+
+Registros por municipio (SP):			 3619005
+
+Registros por municipio (SP) e CNAE (A):	    6477
+Registros por municipio (SP) e CNAE (B):	     844
+Registros por municipio (SP) e CNAE (C):	  274138
+Registros por municipio (SP) e CNAE (D):	    1021
+Registros por municipio (SP) e CNAE (E):	    4834
+Registros por municipio (SP) e CNAE (F):	  177335
+Registros por municipio (SP) e CNAE (G):	 1196870*
+Registros por municipio (SP) e CNAE (G-45):	  123531
+Registros por municipio (SP) e CNAE (G-46):	  153388
+Registros por municipio (SP) e CNAE (G-47):	  919951
+Registros por municipio (SP) e CNAE (H):	  206565
+Registros por municipio (SP) e CNAE (I):	  287069
+Registros por municipio (SP) e CNAE (J):	  176849
+Registros por municipio (SP) e CNAE (K):	  102845
+Registros por municipio (SP) e CNAE (L):	   43912
+Registros por municipio (SP) e CNAE (M):	  252762
+Registros por municipio (SP) e CNAE (N):	  337022
+Registros por municipio (SP) e CNAE (O):	    1450
+Registros por municipio (SP) e CNAE (P):	  109127
+Registros por municipio (SP) e CNAE (Q):	   77234
+Registros por municipio (SP) e CNAE (R):	   47458
+Registros por municipio (SP) e CNAE (S):	  304676
+Registros por municipio (SP) e CNAE (T):	   10517
+
+
+Total socios - 26.807.594
+socios sp -     3.080.462
