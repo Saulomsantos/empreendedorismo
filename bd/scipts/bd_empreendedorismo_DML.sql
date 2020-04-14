@@ -22,22 +22,10 @@ FROM 'C:\db\tab_cnae.csv'
 GO
 
 BULK INSERT cnpj_dados_cadastrais_pj
-FROM 'C:\db\cnpj_dados_cadastrais_pj.csv'
+FROM 'C:\db\cnpj_dados_cadastrais_pj_A.csv'
 	with(
 		format = 'csv',
-		firstrow = 2,
-		fieldterminator = ';',
-		rowterminator = '\n',
-		codepage = 'ACP',
-		datafiletype = 'Char'
-		);
-GO
-
-BULK INSERT teste_socio
-FROM 'C:\db\cnpj_dados_socios_pj.csv'
-	with(
-		format = 'csv',
-		firstrow = 2,
+		firstrow = 1,
 		fieldterminator = ';',
 		rowterminator = '\n',
 		codepage = 'ACP',

@@ -25,7 +25,8 @@ CREATE TABLE tab_situacao_cadastral (
 GO
 
 CREATE TABLE cnpj_dados_cadastrais_pj (
-	cnpj						BIGINT PRIMARY KEY,
+	cod_empresa					INT PRIMARY KEY IDENTITY,
+	cnpj						BIGINT,
 	razao_social				TEXT,
 	situacao_cadastral			INT FOREIGN KEY REFERENCES tab_situacao_cadastral(cod_situacao_cadastral),
 	cnae_fiscal					INT FOREIGN KEY REFERENCES tab_cnae(cod_cnae),
@@ -40,39 +41,15 @@ CREATE TABLE cnpj_dados_cadastrais_pj (
 	ddd_telefone_2				TEXT,
 	ddd_fax						TEXT,
 	correio_eletronico			TEXT,
-	porte_empresa				TEXT,
-	latitude					TEXT,
-	longitude					TEXT
+	porte_empresa				VARCHAR (255)
 );
 GO
 
 CREATE TABLE cnpj_dados_socios_pj (
 	cod_socio				INT PRIMARY KEY,
-	cnpj					BIGINT FOREIGN KEY REFERENCES cnpj_dados_cadastrais_pj(cnpj),
+	cnpj					BIGINT,
 	identificador_socio		TEXT,
 	nome_socio				TEXT,
 	CNPJ_CPF_SOCIO			TEXT
-);
-GO
-
-
-CREATE TABLE teste_socio(
-	tipo_de_registro						TEXT,
-	indicador								TEXT,
-	tipo_atualizacao						TEXT,
-	cnpj									TEXT,
-	identificador_socio						TEXT,
-	nome_socio								TEXT,
-	cnpj_cpf_socio							TEXT,
-	cod_qualificacao_socio					TEXT,
-	percentual_capital_socio				TEXT,
-	data_entrada_sociedade					TEXT,
-	cod_pais								TEXT,
-	nome_pais_socio							TEXT,
-	cpf_representante_legal					TEXT,
-	nome_representante						TEXT,
-	cod_qualificacao_representante_legal	TEXT,
-	fillter									TEXT,
-	fim_registro							TEXT
 );
 GO
