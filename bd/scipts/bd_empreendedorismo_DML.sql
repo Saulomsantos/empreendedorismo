@@ -22,7 +22,7 @@ FROM 'C:\db\tab_cnae.csv'
 GO
 
 BULK INSERT cnpj_dados_cadastrais_pj
-FROM 'C:\db\cnpj_dados_cadastrais_pj_A.csv'
+FROM 'C:\db\cnpj_dados_cadastrais_pj_T.csv'
 	with(
 		format = 'csv',
 		firstrow = 1,
@@ -32,3 +32,8 @@ FROM 'C:\db\cnpj_dados_cadastrais_pj_A.csv'
 		datafiletype = 'Char'
 		);
 GO
+
+UPDATE cnpj_dados_cadastrais_pj SET porte_empresa = 'NI' WHERE porte_empresa = '0';
+UPDATE cnpj_dados_cadastrais_pj SET porte_empresa = 'ME' WHERE porte_empresa = '1';
+UPDATE cnpj_dados_cadastrais_pj SET porte_empresa = 'PP' WHERE porte_empresa = '3';
+UPDATE cnpj_dados_cadastrais_pj SET porte_empresa = 'DEM' WHERE porte_empresa = '5';

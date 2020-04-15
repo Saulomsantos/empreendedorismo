@@ -6,9 +6,13 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      escolhaCnae : '',
+      escolhaMunicipio : '',
       escolhaBairro : '',
+      escolhaCnae : '',
       qtdEmpresas : 0,
+      listaMunicipio : [],
+      listaBairro : [],
+      listaCnae : [],
       listaEmpresas : []
     }
   }
@@ -17,20 +21,57 @@ class App extends Component {
     this.setState({ [event.target.name] : event.target.value })
   }
 
-  formatarCnae = (event) => {
+  formatarMunicipio = (event) => {
     this.atualizaEstado(event);
+    this.buscarBairroIbege(event.target.value);
   }
 
   formatarBairro = (event) => {
     this.atualizaEstado(event);
   }
 
-  buscar = async (e) => {
+  formatarCnae = (event) => {
+    this.atualizaEstado(event);
+  }
+
+  buscarBairroIbege = async (e) =>{
+    // console.log(e);
+    const url = `https://servicodados.ibge.gov.br/api/v1/localidades/municipios/${e}/distritos`;
+    // console.log(url);
+    await Axios.get(url)
+    .then(data => this.setState({
+      listaBairro : data.data
+    }))
+    .catch((erro) => console.log(erro))
+
+    // console.log(this.state.listaBairro);
+  }
+
+  buscarCnae = async () => {
+    await Axios.get('http://localhost:5000/api/Cnaes')
+    .then(data => this.setState({
+      listaCnae : data.data
+    }))
+    .catch((erro) => console.log(erro))
+
+    // console.log(this.state.listaCnae);
+  }
+
+  componentDidMount(){
+    this.buscarCnae();
+  }
+
+  buscarEmpresas = async (e) => {
     e.preventDefault();
 
-    await Axios.post('http://localhost:5000/api/Empresas/Bairro', {
-      cnaeFiscal : this.state.escolhaCnae,
-      bairro : this.state.escolhaBairro
+    this.setState ({ escolhaMunicipio : 'sao paulo' });
+    this.setState ({ listaEmpresas : [] });
+    this.setState ({ qtdEmpresas : 0 });
+
+    await Axios.post('http://localhost:5000/api/Empresas', {
+      municipio : this.state.escolhaMunicipio,
+      bairro : this.state.escolhaBairro,
+      cnaeFiscal : this.state.escolhaCnae
     })
       .then(data => this.setState({
         listaEmpresas : data.data.listaEmpresas,
@@ -45,7 +86,32 @@ class App extends Component {
     return (
       <div className="App">
         <main className="App-header">
-          <div className="container">
+          <div className="containerBusca">
+
+            <select
+              className="select-municipio"
+              value={this.state.escolhaMunicipio}
+              onChange={(m) => this.formatarMunicipio(m)}
+              name="escolhaMunicipio"
+            >
+              <option>Selecione o município</option>
+              <option value="3550308">São Paulo</option>
+            </select>
+
+            <select
+              className="select-bairro"
+              value={this.state.escolhaBairro}
+              onChange={(b) => this.formatarBairro(b)}
+              name="escolhaBairro"
+            >
+              <option>Selecione o bairro</option>
+              {
+                this.state.listaBairro.map((bairro) => {
+                return <option key={bairro.id} value={bairro.nome}>{bairro.nome}</option>
+                })
+              }
+            </select>
+
             <select
               className="select-cnae"
               value={this.state.escolhaCnae}
@@ -53,24 +119,16 @@ class App extends Component {
               name="escolhaCnae"
             >
               <option>Selecione o CNAE</option>
-              <option value="4711302">Comércio varejista de mercadorias em geral com predominância de produtos alimentícios - supermercados</option>
-              <option value="4713004">Lojas de departamentos ou magazines exceto lojas francas (Duty free)</option>
-              <option value="4712100">Comércio varejista de mercadorias em geral com predominância de produtos alimentícios - minimercados mercearias e armazéns</option>
+              {
+                this.state.listaCnae.map((cnae) => {
+                return <option key={cnae.codCnae} value={cnae.codCnae}>{cnae.nmCnae}</option>
+                })
+              }
             </select>
 
-            <select
-              className="select-bairro"
-              value={this.state.escolhaBairro}
-              onChange={(c) => this.formatarBairro(c)}
-              name="escolhaBairro"
-            >
-              <option>Selecione o bairro</option>
-              <option value="sao mateus">São Mateus</option>
-              <option value="santa cecilia">Santa Cecília</option>
-              <option value="santana">Santana</option>
-            </select>
+           
 
-            <button onClick={this.buscar}>Buscar</button>
+            <button onClick={this.buscarEmpresas}>Buscar</button>
           </div>
 
           {/* Lista de empresas */}
@@ -83,6 +141,16 @@ class App extends Component {
                         <tr>
                             <th className="th-CNPJ">CNPJ</th>
                             <th>Razão Social</th>
+                            <th>Situação Cadastral</th>
+                            <th>Porte</th>
+                            <th>Tipo de logradouro</th>
+                            <th>Logradouro</th>
+                            <th>Número</th>
+                            <th>Complemento</th>
+                            <th>Telefone 1</th>
+                            <th>Telefone 2</th>
+                            <th>Fax</th>
+                            <th>E-mail</th>
                         </tr>
                     </thead>
 
@@ -93,6 +161,17 @@ class App extends Component {
                                   <tr key={empresa.cnpj}>
                                       <td className="td-CNPJ">{empresa.cnpj}</td>
                                       <td>{empresa.razaoSocial}</td>
+                                      <td>{empresa.situacaoCadastralNavigation.nmSituacaoCadastral}</td>
+                                      <td>{empresa.porteEmpresa}</td>
+                                      <td>{empresa.tipo_logradouro}</td>
+                                      <td>{empresa.logradouro}</td>
+                                      <td>{empresa.numero}</td>
+                                      <td>{empresa.complemento}</td>
+                                      <td>{empresa.dddTelefone1}</td>
+                                      <td>{empresa.dddTelefone2}</td>
+                                      <td>{empresa.dddTelefoneFax}</td>
+                                      <td>{empresa.correioEletronico}</td>
+
                                   </tr>
                               );
                           })

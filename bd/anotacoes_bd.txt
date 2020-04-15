@@ -26,7 +26,14 @@ Registros por municipio (SP) e CNAE (F):	  177335
 Registros por municipio (SP) e CNAE (G):	 1196870*
 Registros por municipio (SP) e CNAE (G-45):	  123531
 Registros por municipio (SP) e CNAE (G-46):	  153388
-Registros por municipio (SP) e CNAE (G-47):	  919951
+Registros por municipio (SP) e CNAE (G-471):	   81548
+Registros por municipio (SP) e CNAE (G-472):	  148646
+Registros por municipio (SP) e CNAE (G-473):	    5697
+Registros por municipio (SP) e CNAE (G-474):	   60978
+Registros por municipio (SP) e CNAE (G-475):	  149728
+Registros por municipio (SP) e CNAE (G-476):	   44376
+Registros por municipio (SP) e CNAE (G-477):	  113534
+Registros por municipio (SP) e CNAE (G-478):	  315444
 Registros por municipio (SP) e CNAE (H):	  206565
 Registros por municipio (SP) e CNAE (I):	  287069
 Registros por municipio (SP) e CNAE (J):	  176849
