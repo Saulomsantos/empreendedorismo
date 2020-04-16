@@ -35,6 +35,7 @@ CREATE TABLE cnpj_dados_cadastrais_pj (
 	numero						TEXT,
 	complemento					TEXT,
 	bairro						VARCHAR (255),
+	cep							VARCHAR (255),
 	uf							VARCHAR (255),
 	municipio					VARCHAR (255),
 	ddd_telefone_1				TEXT,

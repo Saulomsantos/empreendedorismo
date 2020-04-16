@@ -1,9 +1,3 @@
-- Reestruturar o bd com os campos de acordo com a planilha disponibilizada
-
-- Popular o bd com os dados das empresas do município de SP
-
-- Refatorar a API para trazer estes dados atualizados
-
 - Refatorar o Front-End para exibir os dados da API com três filtros:
 
 	- Município
