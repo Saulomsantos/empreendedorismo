@@ -9,13 +9,13 @@
 			"name": "Empresas",
 			"item": [
 				{
-					"name": "Empresas.Municipio",
+					"name": "Empresas.Listar",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"cnaeFiscal\" : 4711302,\n\t\"municipio\" : \"sao paulo\"\n}",
+							"raw": "{\n    \"municipio\": \"sao paulo\",\n    \"bairro\": \"pinheiros\",\n    \"cnaeFiscal\": 47\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -23,7 +23,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/Empresas/Municipio",
+							"raw": "http://localhost:5000/api/Empresas",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -31,21 +31,20 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"Empresas",
-								"Municipio"
+								"Empresas"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Empresas.Bairro",
+					"name": "Empresas.ListarGrupo",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"cnaeFiscal\" : 4711302,\n\t\"bairro\" : \"santa cecilia\"\n}",
+							"raw": "{\n    \"bairro\": \"pinheiros\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -53,7 +52,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/Empresas/Bairro",
+							"raw": "http://localhost:5000/api/Empresas/Group",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -62,7 +61,33 @@
 							"path": [
 								"api",
 								"Empresas",
-								"Bairro"
+								"Group"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CNAEs",
+			"item": [
+				{
+					"name": "CNAEs.Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/Cnaes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Cnaes"
 							]
 						}
 					},

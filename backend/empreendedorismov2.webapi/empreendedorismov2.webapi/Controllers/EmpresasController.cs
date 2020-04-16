@@ -29,6 +29,7 @@ namespace empreendedorismov2.webapi.Controllers
         /// Cria um objeto _empresasRepository que irá receber todos os métodos definidos na interface
         /// </summary>
         private IEmpresasRepository _empresasRepository;
+        private IEnderecoRepository _enderecoRepository;
 
         /// <summary>
         /// Instancia este objeto para que haja a referência aos métodos no repositório
@@ -36,6 +37,7 @@ namespace empreendedorismov2.webapi.Controllers
         public EmpresasController()
         {
             _empresasRepository = new EmpresasRepository();
+            _enderecoRepository = new EnderecoRepository();
         }
 
         /// <summary>
@@ -133,5 +135,15 @@ namespace empreendedorismov2.webapi.Controllers
         {
             return Ok(_empresasRepository.ListGroup(filtro));
         }
+
+        //[HttpGet("location")]
+        //public IActionResult GetAdress()
+        //{
+        //    string param = "json?address=490+Avenida+Jose+Lopez+Lazaro,+Presidente+Altino,+Osasco,+SP&key=AIzaSyCoYThHmsYR-ouxmdfjfIMxH1QIBi27kfI";
+
+        //    var location = _enderecoRepository.GetLocation(param);
+
+        //    return Ok(location);
+        //}
     }
 }

@@ -18,6 +18,21 @@ namespace empreendedorismov2.webapi.Repositories
         EmpContext ctx = new EmpContext();
 
         /// <summary>
+        /// Atualiza os dados de Latitude e Longitude da empresa
+        /// </summary>
+        public void AtualizaLatLng()
+        {
+            List<CnpjDadosCadastraisPj> listaEmpresas = ctx.CnpjDadosCadastraisPj.ToList();
+
+            foreach (var empresa in listaEmpresas)
+            {
+
+                //empresa.Lat = ;
+                //empresa.Lng = ;
+            }
+        }
+
+        /// <summary>
         /// Lista todas as empresas de SP de um determinado bairro e CNAE escolhidos (filtro)
         /// </summary>
         /// <param name="filtro">Objeto com os filtros passados</param>
@@ -36,6 +51,7 @@ namespace empreendedorismov2.webapi.Repositories
                     Numero = e.Numero,
                     Complemento = e.Complemento,
                     Bairro = e.Bairro,
+                    Cep = e.Cep,
                     Uf = e.Uf,
                     Municipio = e.Municipio,
                     DddTelefone1 = e.DddTelefone1,
@@ -43,6 +59,9 @@ namespace empreendedorismov2.webapi.Repositories
                     DddFax = e.DddFax,
                     CorreioEletronico = e.CorreioEletronico,
                     PorteEmpresa = e.PorteEmpresa,
+                    Lat = e.Lat,
+                    Lng = e.Lng,
+                    
 
                     CnaeFiscalNavigation = new TabCnae()
                     {
@@ -55,7 +74,8 @@ namespace empreendedorismov2.webapi.Repositories
                     }
                 })
                 .Where(e => e.CnaeFiscal.ToString().StartsWith(filtro.CnaeFiscal.ToString()) 
-                        && e.Bairro.StartsWith(filtro.Bairro))
+                        && e.Bairro.StartsWith(filtro.Bairro)
+                        && e.SituacaoCadastral == 2)
                 .ToList();
         }
 
@@ -71,7 +91,7 @@ namespace empreendedorismov2.webapi.Repositories
             List<CnpjDadosCadastraisPj> listaEmpresas = new List<CnpjDadosCadastraisPj>();
 
             listaEmpresas = ctx.CnpjDadosCadastraisPj
-                .Where(e => e.Bairro.StartsWith(filtro.Bairro))
+                .Where(e => e.Bairro.StartsWith(filtro.Bairro) && e.SituacaoCadastral == 2)
                 .Include(e => e.CnaeFiscalNavigation)
                 .ToList();
 

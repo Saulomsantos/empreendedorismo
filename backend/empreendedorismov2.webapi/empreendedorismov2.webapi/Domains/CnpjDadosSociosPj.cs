@@ -1,4 +1,7 @@
-﻿namespace empreendedorismov2.webapi.Domains
+﻿using System;
+using System.Collections.Generic;
+
+namespace empreendedorismov2.webapi.Domains
 {
     public partial class CnpjDadosSociosPj
     {

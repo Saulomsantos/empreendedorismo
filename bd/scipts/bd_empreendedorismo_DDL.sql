@@ -46,6 +46,10 @@ CREATE TABLE cnpj_dados_cadastrais_pj (
 );
 GO
 
+ALTER TABLE cnpj_dados_cadastrais_pj
+ADD lat VARCHAR (255), lng VARCHAR (255);
+GO
+
 CREATE TABLE cnpj_dados_socios_pj (
 	cod_socio				INT PRIMARY KEY,
 	cnpj					BIGINT,
