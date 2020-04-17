@@ -10,12 +10,15 @@ namespace empreendedorismov2.webapi.Repositories
 {
     public class EnderecoRepository : IEnderecoRepository
     {
-        public async Task<Endereco> GetLocation(string param)
-        {
-            var googleAPI = RestService.For<IEnderecoRepository>("https://maps.googleapis.com/");
-            var enderecoRetornado = await googleAPI.GetLocation(param);
+        //public async Task<Endereco> GetLocation(string param)
+        //{
+        //    var googleAPI = RestService.For<IEnderecoRepository>("https://maps.googleapis.com/");
+        //    var enderecoRetornado = await googleAPI.GetLocation(param);
 
-            return enderecoRetornado;
-        }
+        //    //var geoAPI = RestService.For<IEnderecoRepository>("https://geocode.xyz/");
+        //    //var enderecoRetornado = await geoAPI.GetLocation(param);
+
+        //    return enderecoRetornado;
+        //}
     }
 }

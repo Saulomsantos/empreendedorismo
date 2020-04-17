@@ -23,12 +23,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/Empresas",
+							"raw": "http://empcovid.ddns.net/api/Empresas",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"empcovid",
+								"ddns",
+								"net"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"Empresas"
@@ -52,7 +53,29 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/Empresas/Group",
+							"raw": "http://empcovid.ddns.net/api/Empresas/Group",
+							"protocol": "http",
+							"host": [
+								"empcovid",
+								"ddns",
+								"net"
+							],
+							"path": [
+								"api",
+								"Empresas",
+								"Group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:5000/api/Empresas/location",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/Empresas/location",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -61,7 +84,7 @@
 							"path": [
 								"api",
 								"Empresas",
-								"Group"
+								"location"
 							]
 						}
 					},
@@ -79,12 +102,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/Cnaes",
+							"raw": "http://empcovid.ddns.net/api/Cnaes",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"empcovid",
+								"ddns",
+								"net"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"Cnaes"

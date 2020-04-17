@@ -1,5 +1,6 @@
 ﻿using empreendedorismov2.webapi.Domains;
 using empreendedorismov2.webapi.Interfaces;
+using empreendedorismov2.webapi.Util;
 using empreendedorismov2.webapi.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -17,18 +18,37 @@ namespace empreendedorismov2.webapi.Repositories
         /// </summary>
         EmpContext ctx = new EmpContext();
 
+        private IGeolocation _locationRepository = new GoogleMaps();
+
         /// <summary>
         /// Atualiza os dados de Latitude e Longitude da empresa
         /// </summary>
         public void AtualizaLatLng()
         {
-            List<CnpjDadosCadastraisPj> listaEmpresas = ctx.CnpjDadosCadastraisPj.ToList();
+            List<CnpjDadosCadastraisPj> listaEmpresas = ctx.CnpjDadosCadastraisPj
+                .Where(e => e.CodEmpresa < 501)
+                .ToList();
 
-            foreach (var empresa in listaEmpresas)
+            string cidade = "sao paulo";
+
+            string estado = "sp";
+
+            bool sensor = true;
+
+            for (int i = 3; i < 500; i++)
             {
+                CnpjDadosCadastraisPj empresaBuscada = listaEmpresas.Find(e => e.CodEmpresa == i);
 
-                //empresa.Lat = ;
-                //empresa.Lng = ;
+                string logradouro = empresaBuscada.Logradouro;
+                string numero = empresaBuscada.Numero;
+
+                var tempAdress = _locationRepository.BuscarPorEndereco(logradouro, numero, cidade, estado, sensor);
+
+                empresaBuscada.Lat = tempAdress.GeoCode.Latitude;
+                empresaBuscada.Lng = tempAdress.GeoCode.Longitude;
+
+                ctx.CnpjDadosCadastraisPj.Update(empresaBuscada);
+                ctx.SaveChanges();
             }
         }
 

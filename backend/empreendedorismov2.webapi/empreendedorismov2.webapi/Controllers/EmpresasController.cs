@@ -8,6 +8,7 @@ using empreendedorismov2.webapi.ViewModel;
 using Microsoft.AspNetCore.Http;
 using System.Globalization;
 using System.Text;
+using empreendedorismov2.webapi.Util;
 
 namespace empreendedorismov2.webapi.Controllers
 {
@@ -30,6 +31,7 @@ namespace empreendedorismov2.webapi.Controllers
         /// </summary>
         private IEmpresasRepository _empresasRepository;
         private IEnderecoRepository _enderecoRepository;
+        private IGeolocation _locationRepository;
 
         /// <summary>
         /// Instancia este objeto para que haja a referência aos métodos no repositório
@@ -38,6 +40,7 @@ namespace empreendedorismov2.webapi.Controllers
         {
             _empresasRepository = new EmpresasRepository();
             _enderecoRepository = new EnderecoRepository();
+            _locationRepository = new GoogleMaps();
         }
 
         /// <summary>
@@ -137,13 +140,26 @@ namespace empreendedorismov2.webapi.Controllers
         }
 
         //[HttpGet("location")]
-        //public IActionResult GetAdress()
+        //public IActionResult getadress()
         //{
-        //    string param = "json?address=490+Avenida+Jose+Lopez+Lazaro,+Presidente+Altino,+Osasco,+SP&key=AIzaSyCoYThHmsYR-ouxmdfjfIMxH1QIBi27kfI";
+        //    //string param = "json?address=490+avenida+jose+lopez+lazaro,+presidente+altino,+osasco,+sp&key=AIzaSyB0L8qvc3w7RQ3RfAwDaoxx9RED3EFSSiE";
+
+        //    string param = "json?address=06210030&key=AIzaSyBjvccU6EHuwQAdKAaGNIfbSH9LYeJ8DBk";
 
         //    var location = _enderecoRepository.GetLocation(param);
 
         //    return Ok(location);
         //}
+
+        //[HttpPost("location/{logradouro}/{numero}/{cidade}/{estado}/{sensor}")]
+        [HttpPost("location")]
+        public IActionResult getAdress(string logradouro, string numero, string cidade, string estado, bool sensor)
+        {
+            //var tempAdress = _locationRepository.BuscarPorEndereco(logradouro, numero, cidade, estado, sensor);
+
+            _empresasRepository.AtualizaLatLng();
+
+            return Ok();
+        }
     }
 }
