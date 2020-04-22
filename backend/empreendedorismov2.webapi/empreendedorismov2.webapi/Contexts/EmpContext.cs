@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace empreendedorismov2.webapi.Domains
 {
@@ -24,7 +26,7 @@ namespace empreendedorismov2.webapi.Domains
             {
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Data Source=TFIESP01; Initial Catalog=bd_empreendedorismo; user Id=sa; pwd=sa@132;");
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-GCOFA7F\\SQLEXPRESS; Initial Catalog=bd_empreendedorismo; user Id=sa; pwd=sa@132;");
+                // optionsBuilder.UseSqlServer("Data Source=DESKTOP-GCOFA7F\\SQLEXPRESS; Initial Catalog=bd_empreendedorismo; user Id=sa; pwd=sa@132;");
             }
         }
 
@@ -40,6 +42,11 @@ namespace empreendedorismov2.webapi.Domains
 
                 entity.Property(e => e.Bairro)
                     .HasColumnName("bairro")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Cep)
+                    .HasColumnName("cep")
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -70,6 +77,16 @@ namespace empreendedorismov2.webapi.Domains
                 entity.Property(e => e.DescricaoTipoLogradouro)
                     .HasColumnName("descricao_tipo_logradouro")
                     .HasColumnType("text");
+
+                entity.Property(e => e.Lat)
+                    .HasColumnName("lat")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Lng)
+                    .HasColumnName("lng")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Logradouro)
                     .HasColumnName("logradouro")
@@ -103,12 +120,12 @@ namespace empreendedorismov2.webapi.Domains
                 entity.HasOne(d => d.CnaeFiscalNavigation)
                     .WithMany(p => p.CnpjDadosCadastraisPj)
                     .HasForeignKey(d => d.CnaeFiscal)
-                    .HasConstraintName("FK__cnpj_dado__cnae___4E88ABD4");
+                    .HasConstraintName("FK__cnpj_dado__cnae___4AB81AF0");
 
                 entity.HasOne(d => d.SituacaoCadastralNavigation)
                     .WithMany(p => p.CnpjDadosCadastraisPj)
                     .HasForeignKey(d => d.SituacaoCadastral)
-                    .HasConstraintName("FK__cnpj_dado__situa__4D94879B");
+                    .HasConstraintName("FK__cnpj_dado__situa__49C3F6B7");
             });
 
             modelBuilder.Entity<CnpjDadosSociosPj>(entity =>

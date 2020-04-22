@@ -22,5 +22,10 @@ namespace empreendedorismov2.webapi.Interfaces
         /// <param name="filtro">Objeto com o bairro desejado</param>
         /// <returns>Uma lista de grupos (CNAE e quantidade de empresa)</returns>
         List<GroupEmpresasViewModel> ListGroup(FiltroViewModel filtro);
+
+        /// <summary>
+        /// Atualiza os dados de Latitude e Longitude da empresa
+        /// </summary>
+        void AtualizaLatLng();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using empreendedorismov2.webapi.Domains;
 using empreendedorismov2.webapi.Interfaces;
+using empreendedorismov2.webapi.Util;
 using empreendedorismov2.webapi.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -16,6 +17,40 @@ namespace empreendedorismov2.webapi.Repositories
         /// Instancia um contexto para chamada dos métodos do EF Core
         /// </summary>
         EmpContext ctx = new EmpContext();
+
+        private IGeolocation _locationRepository = new GoogleMaps();
+
+        /// <summary>
+        /// Atualiza os dados de Latitude e Longitude da empresa
+        /// </summary>
+        public void AtualizaLatLng()
+        {
+            List<CnpjDadosCadastraisPj> listaEmpresas = ctx.CnpjDadosCadastraisPj
+                .Where(e => e.CodEmpresa < 501)
+                .ToList();
+
+            string cidade = "sao paulo";
+
+            string estado = "sp";
+
+            bool sensor = true;
+
+            for (int i = 3; i < 500; i++)
+            {
+                CnpjDadosCadastraisPj empresaBuscada = listaEmpresas.Find(e => e.CodEmpresa == i);
+
+                string logradouro = empresaBuscada.Logradouro;
+                string numero = empresaBuscada.Numero;
+
+                var tempAdress = _locationRepository.BuscarPorEndereco(logradouro, numero, cidade, estado, sensor);
+
+                empresaBuscada.Lat = tempAdress.GeoCode.Latitude;
+                empresaBuscada.Lng = tempAdress.GeoCode.Longitude;
+
+                ctx.CnpjDadosCadastraisPj.Update(empresaBuscada);
+                ctx.SaveChanges();
+            }
+        }
 
         /// <summary>
         /// Lista todas as empresas de SP de um determinado bairro e CNAE escolhidos (filtro)
@@ -36,6 +71,7 @@ namespace empreendedorismov2.webapi.Repositories
                     Numero = e.Numero,
                     Complemento = e.Complemento,
                     Bairro = e.Bairro,
+                    Cep = e.Cep,
                     Uf = e.Uf,
                     Municipio = e.Municipio,
                     DddTelefone1 = e.DddTelefone1,
@@ -43,6 +79,9 @@ namespace empreendedorismov2.webapi.Repositories
                     DddFax = e.DddFax,
                     CorreioEletronico = e.CorreioEletronico,
                     PorteEmpresa = e.PorteEmpresa,
+                    Lat = e.Lat,
+                    Lng = e.Lng,
+                    
 
                     CnaeFiscalNavigation = new TabCnae()
                     {
@@ -55,7 +94,8 @@ namespace empreendedorismov2.webapi.Repositories
                     }
                 })
                 .Where(e => e.CnaeFiscal.ToString().StartsWith(filtro.CnaeFiscal.ToString()) 
-                        && e.Bairro.StartsWith(filtro.Bairro))
+                        && e.Bairro.StartsWith(filtro.Bairro)
+                        && e.SituacaoCadastral == 2)
                 .ToList();
         }
 
@@ -71,7 +111,7 @@ namespace empreendedorismov2.webapi.Repositories
             List<CnpjDadosCadastraisPj> listaEmpresas = new List<CnpjDadosCadastraisPj>();
 
             listaEmpresas = ctx.CnpjDadosCadastraisPj
-                .Where(e => e.Bairro.StartsWith(filtro.Bairro))
+                .Where(e => e.Bairro.StartsWith(filtro.Bairro) && e.SituacaoCadastral == 2)
                 .Include(e => e.CnaeFiscalNavigation)
                 .ToList();
 
