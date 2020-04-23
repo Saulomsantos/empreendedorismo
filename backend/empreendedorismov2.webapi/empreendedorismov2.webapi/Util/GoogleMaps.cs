@@ -19,7 +19,7 @@ namespace empreendedorismov2.webapi.Util
 
                 using (var webClient = new WebClient())
                 {
-                    string url = string.Format("https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB0L8qvc3w7RQ3RfAwDaoxx9RED3EFSSiE&address={0}&sensor={1}", string.Format("{0}, {1}, {2}, {3}", logradouro, numero, cidade, estado), sensor);
+                    string url = string.Format("https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBjvccU6EHuwQAdKAaGNIfbSH9LYeJ8DBk&address={0}&sensor={1}", string.Format("{0}, {1}, {2}, {3}", logradouro, numero, cidade, estado), sensor);
 
                     string json =
                         webClient.DownloadString(url);

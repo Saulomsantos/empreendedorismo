@@ -26,7 +26,7 @@ namespace empreendedorismov2.webapi.Repositories
         public void AtualizaLatLng()
         {
             List<CnpjDadosCadastraisPj> listaEmpresas = ctx.CnpjDadosCadastraisPj
-                .Where(e => e.CodEmpresa < 501)
+                .Where(e => e.SituacaoCadastral == 2 && e.CodEmpresa >= 1000 && e.CodEmpresa <= 1700)
                 .ToList();
 
             string cidade = "sao paulo";
@@ -35,7 +35,7 @@ namespace empreendedorismov2.webapi.Repositories
 
             bool sensor = true;
 
-            for (int i = 3; i < 500; i++)
+            for (int i = 1001; i <= 1700; i++)
             {
                 CnpjDadosCadastraisPj empresaBuscada = listaEmpresas.Find(e => e.CodEmpresa == i);
 
