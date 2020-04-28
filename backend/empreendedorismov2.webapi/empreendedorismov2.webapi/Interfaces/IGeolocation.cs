@@ -1,8 +1,4 @@
 ﻿using empreendedorismov2.webapi.Domains;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace empreendedorismov2.webapi.Interfaces
 {

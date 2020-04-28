@@ -2,10 +2,8 @@
 using empreendedorismov2.webapi.Interfaces;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 
 namespace empreendedorismov2.webapi.Util
 {
@@ -33,52 +31,52 @@ namespace empreendedorismov2.webapi.Util
                     {
                         tempAddress = new AddressModel();
 
-                        var jsonAddress = (JArray)jsongmaps[0].SelectToken("address_components");
+                        //var jsonAddress = (JArray)jsongmaps[0].SelectToken("address_components");
 
-                        foreach (JToken t in jsonAddress)
-                        {
-                            string tipo = t.SelectToken("types").Values().Contains("sublocality") ? "sublocality" : t.SelectToken("types")[0].ToString();
+                        //foreach (JToken t in jsonAddress)
+                        //{
+                        //    string tipo = t.SelectToken("types").Values().Contains("sublocality") ? "sublocality" : t.SelectToken("types")[0].ToString();
 
 
-                            switch (tipo)
-                            {
-                                case "route":
-                                    {
-                                        tempAddress.Endereco = t.SelectToken("long_name").ToString();
-                                        break;
-                                    }
-                                case "sublocality":
-                                    {
-                                        tempAddress.Bairro = t.SelectToken("long_name").ToString();
-                                        break;
-                                    }
-                                case "administrative_area_level_4":
-                                    {
-                                        tempAddress.Bairro = t.SelectToken("long_name").ToString();
-                                        break;
-                                    }
-                                case "locality":
-                                    {
-                                        tempAddress.Cidade = t.SelectToken("long_name").ToString();
-                                        break;
-                                    }
-                                case "administrative_area_level_1":
-                                    {
-                                        tempAddress.Estado = t.SelectToken("long_name").ToString();
-                                        break;
-                                    }
-                                case "country":
-                                    {
-                                        tempAddress.Pais = t.SelectToken("long_name").ToString();
-                                        break;
-                                    }
-                                case "postal_code":
-                                    {
-                                        tempAddress.Cep = t.SelectToken("long_name").ToString();
-                                        break;
-                                    }
-                            }
-                        }
+                        //    switch (tipo)
+                        //    {
+                        //        case "route":
+                        //            {
+                        //                tempAddress.Endereco = t.SelectToken("long_name").ToString();
+                        //                break;
+                        //            }
+                        //        case "sublocality":
+                        //            {
+                        //                tempAddress.Bairro = t.SelectToken("long_name").ToString();
+                        //                break;
+                        //            }
+                        //        case "administrative_area_level_4":
+                        //            {
+                        //                tempAddress.Bairro = t.SelectToken("long_name").ToString();
+                        //                break;
+                        //            }
+                        //        case "locality":
+                        //            {
+                        //                tempAddress.Cidade = t.SelectToken("long_name").ToString();
+                        //                break;
+                        //            }
+                        //        case "administrative_area_level_1":
+                        //            {
+                        //                tempAddress.Estado = t.SelectToken("long_name").ToString();
+                        //                break;
+                        //            }
+                        //        case "country":
+                        //            {
+                        //                tempAddress.Pais = t.SelectToken("long_name").ToString();
+                        //                break;
+                        //            }
+                        //        case "postal_code":
+                        //            {
+                        //                tempAddress.Cep = t.SelectToken("long_name").ToString();
+                        //                break;
+                        //            }
+                        //    }
+                        //}
 
                         tempAddress.GeoCode.Latitude = (jsongmaps.Count > 0
                                                             ? jsongmaps[0].SelectToken("geometry").SelectToken(
