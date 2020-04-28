@@ -25,8 +25,11 @@ namespace empreendedorismov2.webapi.Repositories
         /// </summary>
         public void AtualizaLatLng()
         {
+            int inicial = 60858;
+            int final = 100000;
+
             List<CnpjDadosCadastraisPj> listaEmpresas = ctx.CnpjDadosCadastraisPj
-                .Where(e => e.SituacaoCadastral == 2 && e.CodEmpresa >= 1000 && e.CodEmpresa <= 1700)
+                .Where(e => e.CodEmpresa >= inicial && e.CodEmpresa <= final)
                 .ToList();
 
             string cidade = "sao paulo";
@@ -35,7 +38,7 @@ namespace empreendedorismov2.webapi.Repositories
 
             bool sensor = true;
 
-            for (int i = 1001; i <= 1700; i++)
+            for (int i = inicial; i <= final; i++)
             {
                 CnpjDadosCadastraisPj empresaBuscada = listaEmpresas.Find(e => e.CodEmpresa == i);
 
@@ -44,11 +47,14 @@ namespace empreendedorismov2.webapi.Repositories
 
                 var tempAdress = _locationRepository.BuscarPorEndereco(logradouro, numero, cidade, estado, sensor);
 
-                empresaBuscada.Lat = tempAdress.GeoCode.Latitude;
-                empresaBuscada.Lng = tempAdress.GeoCode.Longitude;
+                if (tempAdress != null)
+                {
+                    empresaBuscada.Lat = tempAdress.GeoCode.Latitude;
+                    empresaBuscada.Lng = tempAdress.GeoCode.Longitude;
 
-                ctx.CnpjDadosCadastraisPj.Update(empresaBuscada);
-                ctx.SaveChanges();
+                    ctx.CnpjDadosCadastraisPj.Update(empresaBuscada);
+                    ctx.SaveChanges();
+                }
             }
         }
 

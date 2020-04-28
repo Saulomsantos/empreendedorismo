@@ -151,9 +151,9 @@ namespace empreendedorismov2.webapi.Controllers
         //    return Ok(location);
         //}
 
-        //[HttpPost("location/{logradouro}/{numero}/{cidade}/{estado}/{sensor}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         [HttpPost("location")]
-        public IActionResult getAdress(string logradouro, string numero, string cidade, string estado, bool sensor)
+        public IActionResult getAdress()
         {
             //var tempAdress = _locationRepository.BuscarPorEndereco(logradouro, numero, cidade, estado, sensor);
 
