@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b6aa6020-4259-4719-aa07-550cf4f59db3",
+		"_postman_id": "d5476c8f-8742-4033-924c-5aae7e8b0ae9",
 		"name": "empreendedorismo",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -10,6 +10,37 @@
 			"item": [
 				{
 					"name": "Empresas.Listar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"municipio\": \"sao paulo\",\n    \"bairro\": \"pinheiros\",\n    \"cnaeFiscal\": 11\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://189.19.219.247/api/Empresas",
+							"protocol": "http",
+							"host": [
+								"189",
+								"19",
+								"219",
+								"247"
+							],
+							"path": [
+								"api",
+								"Empresas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Empresas.Listar.NoIP",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -70,12 +101,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:5000/api/Empresas/location",
+					"name": "Empresas.Update.LocationGmaps",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/Empresas/location",
+							"raw": "http://localhost:5000/api/Empresas/locationGmaps",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -84,7 +115,28 @@
 							"path": [
 								"api",
 								"Empresas",
-								"location"
+								"locationGmaps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Empresas.Update.LocationGhere",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/Empresas/locationHere",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Empresas",
+								"locationHere"
 							]
 						}
 					},
@@ -112,6 +164,91 @@
 							"path": [
 								"api",
 								"Cnaes"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Examples",
+			"item": [
+				{
+					"name": "Geocode Google Maps example",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB0L8qvc3w7RQ3RfAwDaoxx9RED3EFSSiE&address=03073-060&sensor=true",
+							"protocol": "https",
+							"host": [
+								"maps",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"maps",
+								"api",
+								"geocode",
+								"json"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "AIzaSyB0L8qvc3w7RQ3RfAwDaoxx9RED3EFSSiE"
+								},
+								{
+									"key": "address",
+									"value": "03073-060"
+								},
+								{
+									"key": "sensor",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Geocode Map Here example",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://geocode.search.hereapi.com/v1/geocode?q=1953+sp+avenida nove de julho+sao paulo&apiKey=G3ptK120Ay-TLWvRuZPIZF3I4VrUhQZdMxNGd7Ep7Zk",
+							"protocol": "https",
+							"host": [
+								"geocode",
+								"search",
+								"hereapi",
+								"com"
+							],
+							"path": [
+								"v1",
+								"geocode"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "1953+sp+avenida nove de julho+sao paulo"
+								},
+								{
+									"key": "apiKey",
+									"value": "G3ptK120Ay-TLWvRuZPIZF3I4VrUhQZdMxNGd7Ep7Zk"
+								}
 							]
 						}
 					},
