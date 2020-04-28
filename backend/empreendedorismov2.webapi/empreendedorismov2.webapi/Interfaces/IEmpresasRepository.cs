@@ -32,5 +32,10 @@ namespace empreendedorismov2.webapi.Interfaces
         /// Atualiza os dados de Latitude e Longitude da empresa usando a API Map Here
         /// </summary>
         void AtualizaLatLngHere();
+
+        /// <summary>
+        /// Atualiza os dados de Latitude e Longitude da empresa removendo vírgulas e substituindo por pontos
+        /// </summary>
+        void RemoveCommaAddDot();
     }
 }

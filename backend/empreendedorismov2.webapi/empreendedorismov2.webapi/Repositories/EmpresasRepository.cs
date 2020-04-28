@@ -183,5 +183,29 @@ namespace empreendedorismov2.webapi.Repositories
 
             return listaAgrupada;
         }
+
+        /// <summary>
+        /// Atualiza os dados de Latitude e Longitude da empresa removendo vírgulas e substituindo por pontos
+        /// </summary>
+        public void RemoveCommaAddDot()
+        {
+            int inicial = 1;
+            int final = 64020;
+
+            List<CnpjDadosCadastraisPj> listaEmpresas = ctx.CnpjDadosCadastraisPj
+                .Where(e => e.CodEmpresa >= inicial && e.CodEmpresa <= final)
+                .ToList();
+
+            for (int i = inicial; i <= final; i++)
+            {
+                CnpjDadosCadastraisPj empresaBuscada = listaEmpresas.Find(e => e.CodEmpresa == i);
+
+                empresaBuscada.Lat = empresaBuscada.Lat.Replace(",", ".");
+                empresaBuscada.Lng = empresaBuscada.Lng.Replace(",", ".");
+
+                ctx.CnpjDadosCadastraisPj.Update(empresaBuscada);
+                ctx.SaveChanges();
+            }
+        }
     }
 }

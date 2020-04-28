@@ -172,5 +172,14 @@ namespace empreendedorismov2.webapi.Controllers
 
             return Ok();
         }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        [HttpPut("locationRemoveCommaAddDot")]
+        public IActionResult updateAddress()
+        {
+            _empresasRepository.RemoveCommaAddDot();
+
+            return Ok();
+        }
     }
 }
