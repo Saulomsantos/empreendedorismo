@@ -152,12 +152,23 @@ namespace empreendedorismov2.webapi.Controllers
         //}
 
         [ApiExplorerSettings(IgnoreApi = true)]
-        [HttpPost("location")]
+        [HttpPost("locationGmaps")]
         public IActionResult getAdress()
         {
             //var tempAdress = _locationRepository.BuscarPorEndereco(logradouro, numero, cidade, estado, sensor);
 
             _empresasRepository.AtualizaLatLng();
+
+            return Ok();
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        [HttpGet("locationHere")]
+        public IActionResult getAdressHere()
+        {
+            //AddressModel tempAddress = _empresasRepository.AtualizaLatLngHere();
+
+            _empresasRepository.AtualizaLatLngHere();
 
             return Ok();
         }

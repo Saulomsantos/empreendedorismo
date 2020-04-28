@@ -20,8 +20,10 @@ namespace empreendedorismov2.webapi.Repositories
 
         private IGeolocation _locationRepository = new GoogleMaps();
 
+        private IGeolocation _locationHereRepository = new HereMaps();
+
         /// <summary>
-        /// Atualiza os dados de Latitude e Longitude da empresa
+        /// Atualiza os dados de Latitude e Longitude da empresa usando a API do Google
         /// </summary>
         public void AtualizaLatLng()
         {
@@ -49,8 +51,46 @@ namespace empreendedorismov2.webapi.Repositories
 
                 if (tempAdress != null)
                 {
-                    empresaBuscada.Lat = tempAdress.GeoCode.Latitude;
-                    empresaBuscada.Lng = tempAdress.GeoCode.Longitude;
+                    empresaBuscada.Lat = tempAdress.GeoCode.Latitude.Replace(",", ".");
+                    empresaBuscada.Lng = tempAdress.GeoCode.Longitude.Replace(",", ".");
+
+                    ctx.CnpjDadosCadastraisPj.Update(empresaBuscada);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Atualiza os dados de Latitude e Longitude da empresa usando a API Map Here
+        /// </summary>
+        public void AtualizaLatLngHere()
+        {
+            int inicial = 100500;
+            int final = 100505;
+
+            List<CnpjDadosCadastraisPj> listaEmpresas = ctx.CnpjDadosCadastraisPj
+                .Where(e => e.CodEmpresa >= inicial && e.CodEmpresa <= final)
+                .ToList();
+
+            string cidade = "sao paulo";
+
+            string estado = "sp";
+
+            bool sensor = true;
+
+            for (int i = inicial; i <= final; i++)
+            {
+                CnpjDadosCadastraisPj empresaBuscada = listaEmpresas.Find(e => e.CodEmpresa == i);
+
+                string logradouro = empresaBuscada.Logradouro;
+                string numero = empresaBuscada.Numero;
+
+                var tempAdress = _locationRepository.BuscarPorEndereco(logradouro, numero, cidade, estado, sensor);
+
+                if (tempAdress != null)
+                {
+                    empresaBuscada.Lat = tempAdress.GeoCode.Latitude.Replace(",", ".");
+                    empresaBuscada.Lng = tempAdress.GeoCode.Longitude.Replace(",", ".");
 
                     ctx.CnpjDadosCadastraisPj.Update(empresaBuscada);
                     ctx.SaveChanges();

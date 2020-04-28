@@ -24,8 +24,13 @@ namespace empreendedorismov2.webapi.Interfaces
         List<GroupEmpresasViewModel> ListGroup(FiltroViewModel filtro);
 
         /// <summary>
-        /// Atualiza os dados de Latitude e Longitude da empresa
+        /// Atualiza os dados de Latitude e Longitude da empresa do Google
         /// </summary>
         void AtualizaLatLng();
+
+        /// <summary>
+        /// Atualiza os dados de Latitude e Longitude da empresa usando a API Map Here
+        /// </summary>
+        void AtualizaLatLngHere();
     }
 }
