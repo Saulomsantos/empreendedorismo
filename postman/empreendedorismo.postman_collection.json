@@ -141,6 +141,27 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Empresas.Update.Location.RemoveCommaAddDot",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/Empresas/locationRemoveCommaAddDot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Empresas",
+								"locationRemoveCommaAddDot"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
