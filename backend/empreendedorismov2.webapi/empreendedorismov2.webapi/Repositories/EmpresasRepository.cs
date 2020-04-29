@@ -27,7 +27,7 @@ namespace empreendedorismov2.webapi.Repositories
         /// </summary>
         public void AtualizaLatLng()
         {
-            int inicial = 60858;
+            int inicial = 67038;
             int final = 100000;
 
             List<CnpjDadosCadastraisPj> listaEmpresas = ctx.CnpjDadosCadastraisPj
@@ -65,8 +65,8 @@ namespace empreendedorismov2.webapi.Repositories
         /// </summary>
         public void AtualizaLatLngHere()
         {
-            int inicial = 100500;
-            int final = 100505;
+            int inicial = 101736;
+            int final = 200000;
 
             List<CnpjDadosCadastraisPj> listaEmpresas = ctx.CnpjDadosCadastraisPj
                 .Where(e => e.CodEmpresa >= inicial && e.CodEmpresa <= final)
@@ -85,7 +85,7 @@ namespace empreendedorismov2.webapi.Repositories
                 string logradouro = empresaBuscada.Logradouro;
                 string numero = empresaBuscada.Numero;
 
-                var tempAdress = _locationRepository.BuscarPorEndereco(logradouro, numero, cidade, estado, sensor);
+                var tempAdress = _locationHereRepository.BuscarPorEndereco(logradouro, numero, cidade, estado, sensor);
 
                 if (tempAdress != null)
                 {
@@ -189,7 +189,7 @@ namespace empreendedorismov2.webapi.Repositories
         /// </summary>
         public void RemoveCommaAddDot()
         {
-            int inicial = 1;
+            int inicial = 15340;
             int final = 64020;
 
             List<CnpjDadosCadastraisPj> listaEmpresas = ctx.CnpjDadosCadastraisPj
