@@ -16,7 +16,7 @@ namespace empreendedorismov2.webapi.Util
 
                 using (var webClient = new WebClient())
                 {
-                    string url = string.Format("https://geocode.search.hereapi.com/v1/geocode?q={0}&apiKey=G3ptK120Ay-TLWvRuZPIZF3I4VrUhQZdMxNGd7Ep7Zk", string.Format("{0}, {1}, {2}, {3}", logradouro, numero, cidade, estado));
+                    string url = string.Format("https://geocode.search.hereapi.com/v1/geocode?q={0}&apiKey=ik5cSBhbY4kYf912mlYI_YxZMt3wyBAPAfKtttG_ZUQ", string.Format("{0}, {1}, {2}, {3}", logradouro, numero, cidade, estado));
 
                     string json =
                         webClient.DownloadString(url);
